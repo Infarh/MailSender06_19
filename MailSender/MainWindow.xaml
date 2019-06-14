@@ -1,0 +1,130 @@
+﻿<Window x:Class="MailSender.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MailSender"
+        Title="MainWindow" 
+        Height="500" Width="1024">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать"/>
+                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Сохранить"/>
+                <MenuItem Header="Закрыть"/>
+                <Separator/>
+                <MenuItem Header="Выход" Click="OnExitClick"/>
+            </MenuItem>
+            <MenuItem Header="Сервис" IsEnabled="False"/>
+            <MenuItem Header="Помощь" IsEnabled="False"/>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock>Готов к труду и обороне!</TextBlock>
+        </StatusBar>
+        <TabControl>
+            <TabItem Header="Списки"></TabItem>
+            <TabItem Header="Планировщик"></TabItem>
+            <TabItem Header="Почта"></TabItem>
+            <TabItem Header="Статистика"></TabItem>
+            <TabItem Header="Панели">
+                <TabControl TabStripPlacement="Bottom">
+                    <TabItem Header="StackPanel">
+                        <StackPanel>
+                            <TextBox Text="Текстовое поле ввода"></TextBox>
+                            <TextBox Margin="10">Второе поле ввода текста</TextBox>
+                            <TextBox Margin="20,5">Третье поле ввода текста</TextBox>
+                            <TextBox Margin="0,7,8,10">Четвёртое поле ввода текста</TextBox>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Кнопка 1" Margin="5,3" Padding="7,2"/>
+                                <Button VerticalAlignment="Bottom">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="10" Source="https://findicons.com/files/icons/977/rrze/48/flag_red.png"></Image>
+                                        <TextBlock>Кнопка 2</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <TextBlock VerticalAlignment="Bottom">Текстовое поле</TextBlock>
+                                <Label>Метка</Label>
+                                <TextBox VerticalAlignment="Top" VerticalContentAlignment="Top">Ещё одно поле ввода текста</TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Grid">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="7*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button VerticalAlignment="Top" Margin="50,20,31,0" Height="30">Кнопка 1</Button>
+                            <Button Grid.Column="1" Grid.Row="0" Margin="11,5" >Кнопка 2</Button>
+                            <Ellipse Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="120,3"
+                                     Stroke="Red" StrokeThickness="3" Fill="Blue" StrokeDashArray="5,2,1"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Canvas">
+                        <Canvas>
+                            <Button Canvas.Top="20" Canvas.Left="15">Кнопка 1</Button>
+                            <Button Canvas.Bottom="15" Canvas.Left="7">Кнопка 2</Button>
+                            <Button Canvas.Bottom="7" Canvas.Right="20">Кнопка 3</Button>
+                            <Button Canvas.Top="10" Canvas.Right="30">Кнопка 4</Button>
+                        </Canvas>
+                    </TabItem>
+                    <TabItem Header="DockPanel">
+                       <DockPanel>
+                           <Button DockPanel.Dock="Right">
+                                <TextBlock Text="Кнопка 1" RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.LayoutTransform>
+                                        <RotateTransform Angle="-90"></RotateTransform>
+                                    </TextBlock.LayoutTransform>
+                                </TextBlock>
+                           </Button>
+                           <Button DockPanel.Dock="Top" Content="Кнопка 2"/>
+                           <Button DockPanel.Dock="Left" Content="Кнопка 3"/>
+                           <TextBox DockPanel.Dock="Bottom" Text="Поле ввода текста"/>
+                           <Rectangle Stroke="Blue" Fill="DarkGray" RadiusY="100" RadiusX="50"></Rectangle>
+                       </DockPanel>
+                    </TabItem>
+                    <TabItem Header="UniformGrid">
+                        <UniformGrid Columns="5" Rows="7">
+                            <Button>Кнопка 1</Button>
+                            <Button>Кнопка 2</Button>
+                            <Button>Кнопка 3</Button>
+                            <CheckBox>Флажок 1</CheckBox>
+                            <CheckBox>Флажок 2</CheckBox>
+                            <CheckBox>Флажок 3</CheckBox>
+                            <Calendar/>
+                            <ComboBox>
+                                123
+                                qwe
+                                sad
+                            </ComboBox>
+                        </UniformGrid>
+                    </TabItem>
+                    <TabItem Header="WrapPanel">
+                        <WrapPanel Orientation="Vertical">
+                            <Button>Кнопка 1</Button>
+                            <Button>Кнопка 2</Button>
+                            <Button>Кнопка 3</Button>
+                            <CheckBox>Флажок 1</CheckBox>
+                            <CheckBox>Флажок 2</CheckBox>
+                            <CheckBox>Флажок 3</CheckBox>
+                            <Calendar/>
+                            <ComboBox>
+                                123
+                                qwe
+                                sad
+                            </ComboBox>
+                        </WrapPanel>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
