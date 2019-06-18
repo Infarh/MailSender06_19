@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
+        xmlns:cmp="clr-namespace:MailSender.Components"
         Title="MainWindow" 
         Height="500" Width="1024">
     <DockPanel>
@@ -23,9 +24,14 @@
             <MenuItem Header="Помощь" IsEnabled="False"/>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem DockPanel.Dock="Right">
+                <cmp:TabController Width="200" IsLeftButtonVisible="False"
+                                   LeftButtonClick="TabController_OnLeftButtonClick"
+                                   RightButtonClick="TabController_OnRightButtonClick"/>
+            </StatusBarItem>
             <TextBlock>Готов к труду и обороне!</TextBlock>
         </StatusBar>
-        <TabControl>
+        <TabControl Name="MainTabControl">
             <TabItem Header="Списки">
                 <Grid>
                     <Grid.RowDefinitions>
