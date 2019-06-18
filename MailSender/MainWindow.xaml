@@ -191,7 +191,35 @@
                     </GroupBox>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Почта"></TabItem>
+            <TabItem Header="Редактор сообщений">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Письма" Grid.Column="0">
+                        <DockPanel>
+                            <UniformGrid DockPanel.Dock="Bottom" Rows="1">
+                                <Button>New</Button>
+                                <Button>Del</Button>
+                            </UniformGrid>
+                            <ListBox>
+                                <ListBoxItem>Письмо 1</ListBoxItem>
+                                <ListBoxItem>Письмо 2</ListBoxItem>
+                                <ListBoxItem>Письмо 3</ListBoxItem>
+                            </ListBox>
+                        </DockPanel>
+                    </GroupBox>
+                    <DockPanel Grid.Column="1">
+                        <GroupBox Header="Тема" DockPanel.Dock="Top">
+                            <TextBox/>
+                        </GroupBox>
+                        <GroupBox Header="Тело" DockPanel.Dock="Top">
+                            <TextBox AcceptsReturn="True"/>
+                        </GroupBox>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
             <TabItem Header="Статистика" IsEnabled="False"/>
         </TabControl>
     </DockPanel>
