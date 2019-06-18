@@ -182,7 +182,12 @@
                         </StackPanel>
                     </StackPanel>
                     <GroupBox Header="Запланированные задания">
-                        <ListBox/>
+                        <ListBox>
+                            <ListBoxItem>Задание 1</ListBoxItem>
+                            <ListBoxItem>Задание 2</ListBoxItem>
+                            <ListBoxItem>Задание 3</ListBoxItem>
+                            <ListBoxItem>Задание 4</ListBoxItem>
+                        </ListBox>
                     </GroupBox>
                 </DockPanel>
             </TabItem>
