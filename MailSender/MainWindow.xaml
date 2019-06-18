@@ -6,6 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
+        xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
         Title="MainWindow" 
         Height="500" Width="1024">
     <DockPanel>
@@ -154,12 +155,18 @@
                         </ToolBar>
                     </ToolBarTray>
                     <GroupBox Grid.Row="1" Header="Получатели писем">
-                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True">
+                        <GroupBox.Resources>
+                            <db:MailSenderDBContext x:Key="DataBaseContext"/>
+                        </GroupBox.Resources>
+                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
+                                  ItemsSource="{Binding Recipient, Source={StaticResource DataBaseContext}}" HeadersVisibility="Column" GridLinesVisibility="Vertical"
+                                  AlternatingRowBackground="LightGray"
+                                  VerticalGridLinesBrush="DarkGray">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID"/>
-                                <DataGridTextColumn Header="Имя" MinWidth="150"/>
-                                <DataGridTextColumn Header="Email" MinWidth="150"/>
-                                <DataGridTextColumn Header="Коментарий" Width="*"/>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Имя" MinWidth="150" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Email" MinWidth="150" Binding="{Binding Address}"/>
+                                <DataGridTextColumn Header="Коментарий" Width="*" Binding="{Binding Description}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
