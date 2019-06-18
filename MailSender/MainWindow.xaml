@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:MailSender"
+        xmlns:data="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         Title="MainWindow" 
         Height="500" Width="1024">
     <DockPanel>
@@ -39,10 +40,10 @@
                         </ToolBarTray.Resources>
                         <ToolBar>
                             <Label>Сервера</Label>
-                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0">
-                                <ComboBoxItem>Server 1</ComboBoxItem>
-                                <ComboBoxItem>Server 2</ComboBoxItem>
-                                <ComboBoxItem>Server 3</ComboBoxItem>
+                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" 
+                                      ItemsSource="{x:Static data:TestData.Servers}"
+                                      DisplayMemberPath="Name">
+                             
                             </ComboBox>
                             <Button>
                                 <StackPanel Orientation="Horizontal">
@@ -65,10 +66,17 @@
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label>Отправители</Label>
-                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0">
-                                <ComboBoxItem>Отправитель 1</ComboBoxItem>
-                                <ComboBoxItem>Отправитель 2</ComboBoxItem>
-                                <ComboBoxItem>Отправитель 3</ComboBoxItem>
+                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0"
+                                      ItemsSource="{x:Static data:TestData.Senders}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type data:Sender}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Address}"
+                                                       Margin="3,0,0,0" Opacity="0.6"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button>
                                 <StackPanel Orientation="Horizontal">
@@ -203,19 +211,21 @@
                                 <Button>New</Button>
                                 <Button>Del</Button>
                             </UniformGrid>
-                            <ListBox>
-                                <ListBoxItem>Письмо 1</ListBoxItem>
-                                <ListBoxItem>Письмо 2</ListBoxItem>
-                                <ListBoxItem>Письмо 3</ListBoxItem>
+                            <ListBox Name="MessagesList" ItemsSource="{x:Static data:TestData.Messages}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type data:MailMessage}">
+                                        <TextBlock Text="{Binding Subject}" ToolTip="{Binding Body}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
                             </ListBox>
                         </DockPanel>
                     </GroupBox>
                     <DockPanel Grid.Column="1">
                         <GroupBox Header="Тема" DockPanel.Dock="Top">
-                            <TextBox/>
+                            <TextBox Text="{Binding SelectedItem.Subject, ElementName=MessagesList}"/>
                         </GroupBox>
                         <GroupBox Header="Тело" DockPanel.Dock="Top">
-                            <TextBox AcceptsReturn="True"/>
+                            <TextBox AcceptsReturn="True" Text="{Binding SelectedItem.Body, ElementName=MessagesList}"/>
                         </GroupBox>
                     </DockPanel>
                 </Grid>
