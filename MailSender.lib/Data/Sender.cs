@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MailSender.lib.Data
+﻿namespace MailSender.lib.Data
 {
-    class Sender
+    public class Sender
     {
         public string Name { get; set; }
         public string Address { get; set; }

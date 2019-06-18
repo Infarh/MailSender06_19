@@ -1,6 +1,6 @@
 ﻿namespace MailSender.lib.Data
 {
-    class MailMessage
+    public class MailMessage
     {
         public string Subject { get; set; }
         public string Body { get; set; }
