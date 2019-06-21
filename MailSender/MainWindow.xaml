@@ -243,7 +243,6 @@
                     </DockPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Статистика" IsEnabled="False"/>
         </TabControl>
     </DockPanel>
 </Window>
