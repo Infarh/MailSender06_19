@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Ioc;
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.Services;
 using MailSender.lib.Services.Linq2SQL;
+using MailSender.lib.Services.InMemory;
 
 
 namespace MailSender.ViewModel
@@ -31,13 +32,11 @@ namespace MailSender.ViewModel
             if (!SimpleIoc.Default.IsRegistered<MailSenderDBContext>())
                 SimpleIoc.Default.Register(() => new MailSenderDBContext());
 
-            SimpleIoc.Default.Register<IRecipientsDataService, RecipientsDataServiceLinq2SQL>();
+            //SimpleIoc.Default.Register<IRecipientsDataService, RecipientsDataServiceLinq2SQL>();
+            SimpleIoc.Default.Register<IRecipientsDataService, RecipientsDataServiceInMemory>();
 
-            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainWindowViewModel>();
         }
-
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
         /// <summary>Модель-представления главного окна</summary>
         public MainWindowViewModel MainWindowViewModel => ServiceLocator.Current.GetInstance<MainWindowViewModel>();

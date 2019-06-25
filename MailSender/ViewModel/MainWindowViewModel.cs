@@ -76,7 +76,7 @@ namespace MailSender.ViewModel
             Application.Current.Shutdown();
         }
 
-        private bool CanSaveRecipientCommandExecuted(Recipient recipient) => recipient != null;
+        private bool CanSaveRecipientCommandExecuted(Recipient recipient) => recipient != null && recipient.Name.Length > 3;
 
         private void OnSaveRecipientCommandExecuted(Recipient recipient)
         {

@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MailSender.View"
+             xmlns:vr="clr-namespace:MailSender.ValidationRules"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="186" d:DesignWidth="200"
              DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
-    <Grid Margin="5">
+    <Grid Margin="5" Validation.Error="OnDataValidationError">
         <Grid.Resources>
             <Style TargetType="TextBox">
                 <Setter Property="Margin" Value="3,2"/>
@@ -33,9 +35,38 @@
         <TextBlock Grid.Column="0" Grid.Row="2">Email</TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="3">Описане</TextBlock>
 
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CurrentRecipient.Id}"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding CurrentRecipient.Name}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding CurrentRecipient.Address}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" 
+                 Text="{Binding CurrentRecipient.Id, NotifyOnValidationError=True}" 
+                 IsReadOnly="False"
+                 />
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding CurrentRecipient.Name, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="2">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <DockPanel>
+                        <fa:ImageAwesome DockPanel.Dock="Left" 
+                                         Height="16" Margin="0,0,4,0"
+                                         Icon="Exclamation" 
+                                         Foreground="Red" Spin="True"
+                                         ToolTip="{Binding (Validation.Errors)[0].ErrorContent, ElementName=AdornedElement}"/>
+                        <Border BorderBrush="Red" BorderThickness="2" Padding="4">
+                            <AdornedElementPlaceholder x:Name="AdornedElement"/>
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+            <TextBox.Text>
+                <Binding Path="CurrentRecipient.Address">
+                    <Binding.ValidationRules>
+                       <vr:RegExValidationRule Pattern="\w+@\w+\.\w+"
+                                               ErrorMessage="Адрес электронной почты имеет неверный формат"/>
+                       <DataErrorValidationRule/>
+                       <ExceptionValidationRule/>
+                       <NotifyDataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding CurrentRecipient.Description}"/>
 
         <UniformGrid Rows="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" 

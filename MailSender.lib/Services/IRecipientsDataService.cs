@@ -10,6 +10,8 @@ namespace MailSender.lib.Services
         /// <returns>Перечисление всех получателей, известных сервису</returns>
         IEnumerable<Recipient> GetAll();
 
+        Recipient GetById(int id);
+
         /// <summary>Создать (зарегистрировать) нового получателя почты</summary>
         /// <param name="item">Создаваемый новый получатель</param>
         void Create(Recipient item);

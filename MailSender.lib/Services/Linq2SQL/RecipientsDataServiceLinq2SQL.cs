@@ -19,6 +19,8 @@ namespace MailSender.lib.Services.Linq2SQL
         /// <returns>Перечисление всех получателей, хранимый в контексте БД</returns>
         public IEnumerable<Recipient> GetAll() => _db.Recipient.ToArray();
 
+        public Recipient GetById(int id) => _db.Recipient.FirstOrDefault(r => r.Id == id);
+
         /// <summary>Создать (зарегистрировать) нового получателя почты в контексте БД</summary>
         /// <param name="item">Создаваемый новый получатель</param>
         public void Create(Recipient item)
