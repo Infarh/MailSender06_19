@@ -21,7 +21,7 @@
             <Button Canvas.Left="{Binding Position}" Canvas.Top="20" Content="{Binding Time}" RenderTransformOrigin="0.5,0.5">
                 <Button.ContentTemplate>
                     <DataTemplate DataType="system:DateTime">
-                        <TextBlock Text="{Binding StringFormat='hh:mm:ss.fff'}" MinWidth="80"/>
+                        <TextBlock Text="{Binding StringFormat='HH:mm:ss.fff'}" MinWidth="80"/>
                     </DataTemplate>
                 </Button.ContentTemplate>
                 <Button.RenderTransform>

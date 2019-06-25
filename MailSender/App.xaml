@@ -6,23 +6,19 @@
              mc:Ignorable="d"
              xmlns:local="clr-namespace:MailSender" 
              StartupUri="MainWindow.xaml">
-  <Application.Resources>
-    <ResourceDictionary>
-        <!-- 
-            ¬ ресурсах всего приложени€ мы определ€ем специальный объект-локатор, доступный везде через ключ ресурса Locator. 
-            » через него мы можем обращатьс€ к нужным нам зарегистрированным заранее модел€м представлени€ 
-        -->
-        <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:MailSender.ViewModel" />
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:MailSender.ViewModel" />
 
-      <Style TargetType="Button">
-          <Setter Property="Background" Value="Transparent" />
-          <Style.Triggers>
-              <Trigger Property="IsMouseOver" Value="True">
-                  <Setter Property="Foreground" Value="Red" />
-                  <Setter Property="FontWeight" Value="Bold" />
-              </Trigger>
-          </Style.Triggers>
-      </Style>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="Red" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
-  </Application.Resources>
+    </Application.Resources>
 </Application>

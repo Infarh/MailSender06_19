@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MailSender.lib.MVVM
 {
@@ -21,10 +16,7 @@ namespace MailSender.lib.MVVM
         /// Имя изменившегося свойства.
         /// Если не указано, то используется имя метода/свойства из которого вызыван данный метод.
         /// </param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-        }
+        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
 
         /// <summary>Метод установки значения поля свойства, позволяющий автоматизировать генерацию события изменения свойства</summary>
         /// <typeparam name="T">Тип данных поля/свойства</typeparam>
