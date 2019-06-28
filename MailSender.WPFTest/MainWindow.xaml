@@ -8,26 +8,7 @@
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="450" Width="800">
-    <Window.DataContext>
-        <local:MainWindowViewModel/>
-    </Window.DataContext>
-    <DockPanel Margin="5">
-        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top"/>
-        <Slider DockPanel.Dock="Top" Maximum="400" Value="{Binding Position}"/>
-        <TextBox DockPanel.Dock="Top" Text="{Binding Position}" Margin="0,0,0,10"/>
-        <Slider DockPanel.Dock="Top" Maximum="360" Value="{Binding Angle}"/>
-        <TextBox DockPanel.Dock="Top" Text="{Binding Angle}" Margin="0,0,0,10"/>
-        <Canvas>
-            <Button Canvas.Left="{Binding Position}" Canvas.Top="20" Content="{Binding Time}" RenderTransformOrigin="0.5,0.5">
-                <Button.ContentTemplate>
-                    <DataTemplate DataType="system:DateTime">
-                        <TextBlock Text="{Binding StringFormat='HH:mm:ss.fff'}" MinWidth="80"/>
-                    </DataTemplate>
-                </Button.ContentTemplate>
-                <Button.RenderTransform>
-                    <RotateTransform Angle="{Binding Angle}"/>
-                </Button.RenderTransform>
-            </Button>
-        </Canvas>
-    </DockPanel>
+    <Grid>
+
+    </Grid>
 </Window>
