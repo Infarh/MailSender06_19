@@ -1,7 +1,9 @@
-﻿namespace MailSender.lib.Data
+﻿using MailSender.lib.Data.BaseEntityes;
+
+namespace MailSender.lib.Data
 {
     /// <summary>Сообщение электронной почты</summary>
-    public class MailMessage
+    public class MailMessage : Entity
     {
         /// <summary>Тема</summary>
         public string Subject { get; set; }
