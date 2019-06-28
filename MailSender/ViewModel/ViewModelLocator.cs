@@ -32,10 +32,16 @@ namespace MailSender.ViewModel
             if (!SimpleIoc.Default.IsRegistered<MailSenderDBContext>())
                 SimpleIoc.Default.Register(() => new MailSenderDBContext());
 
-            //SimpleIoc.Default.Register<IRecipientsDataService, RecipientsDataServiceLinq2SQL>();
-            SimpleIoc.Default.Register<IRecipientsDataService, RecipientsDataServiceInMemory>();
+            var services = SimpleIoc.Default;
+            //services.Register<IRecipientsDataService, RecipientsDataServiceLinq2SQL>();
+            services.Register<IRecipientsDataService, RecipientsDataServiceInMemory>();
+            services.Register<ISendersDataService, SendersDataInMemory>();
+            services.Register<IServerDataService, ServersDataInMemory>();
+            services.Register<IMailMessageDataService, MailMessagesDataInMemory>();
 
-            SimpleIoc.Default.Register<MainWindowViewModel>();
+            services.Register<IMailSenderService, SmtpMailSenderService>();
+
+            services.Register<MainWindowViewModel>();
         }
 
         /// <summary>Модель-представления главного окна</summary>
