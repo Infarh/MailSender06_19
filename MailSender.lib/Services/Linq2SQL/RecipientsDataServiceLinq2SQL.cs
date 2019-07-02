@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MailSender.lib.Data;
 
 namespace MailSender.lib.Services.Linq2SQL
@@ -27,6 +28,11 @@ namespace MailSender.lib.Services.Linq2SQL
             })
            .ToArray();
 
+        public async Task<IEnumerable<Recipient>> GetAllAsync()
+        {
+            return await Task.Run(() => GetAll());
+        }
+
         public Recipient GetById(int id) => _db.Recipient
            .Select(r => new Recipient
             {
@@ -36,6 +42,8 @@ namespace MailSender.lib.Services.Linq2SQL
                 Description = r.Description
             })
            .FirstOrDefault(r => r.Id == id);
+
+        public async Task<Recipient> GetByIdAsync(int id) => await Task.Run(() => GetById(id));
 
         /// <summary>Создать (зарегистрировать) нового получателя почты в контексте БД</summary>
         /// <param name="item">Создаваемый новый получатель</param>
@@ -51,9 +59,13 @@ namespace MailSender.lib.Services.Linq2SQL
             _db.SubmitChanges();
         }
 
+        public async Task AddAsync(Recipient item) => await Task.Run(() => Add(item));
+
         /// <summary>Обновить данные получателя</summary>
         /// <param name="item">Получатель почты, данные которого требуется обновить</param>
         public void Edit(Recipient item) => _db.SubmitChanges();
+
+        public async Task EditAsync(Recipient item) => await Task.Run(() => Edit(item));
 
         /// <summary>Удалить получателя из БД</summary>
         /// <param name="item">Получатель почты, которого требуется удалить</param>
@@ -64,5 +76,7 @@ namespace MailSender.lib.Services.Linq2SQL
             _db.Recipient.DeleteOnSubmit(db_item);
             _db.SubmitChanges();
         }
+
+        public async Task DeleteAsync(Recipient item) => await Task.Run(() => Delete(item));
     }
 }
