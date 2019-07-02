@@ -54,35 +54,20 @@
                             </Style>
                         </ToolBarTray.Resources>
                         <ToolBar>
-                            <Label>Сервера</Label>
-                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" 
-                                      ItemsSource="{x:Static data:TestData.Servers}"
-                                      DisplayMemberPath="Name">
-                             
-                            </ComboBox>
-                            <Button>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="Media/add.png"/>
-                                    <TextBlock Text="Добавить"/>
-                                </StackPanel>
-                            </Button>
-                            <Button>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="Media/edit.png"/>
-                                    <TextBlock Text="Редактировать"/>
-                                </StackPanel>
-                            </Button>
-                            <Button>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="Media/remove.png"/>
-                                    <TextBlock Text="Удалить"/>
-                                </StackPanel>
-                            </Button>
+                            <cmp:ListController PanelName="Сервера" 
+                                                ItemSource="{Binding Servers, IsAsync=True, Delay=500}" 
+                                                SelectedIndex="1">
+                                <cmp:ListController.ItemTemplate>
+                                    <DataTemplate DataType="data:Server">
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </cmp:ListController.ItemTemplate>
+                            </cmp:ListController>
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label>Отправители</Label>
                             <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0"
-                                      ItemsSource="{x:Static data:TestData.Senders}">
+                                      ItemsSource="{Binding Senders}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type data:Sender}">
                                         <StackPanel Orientation="Horizontal">
@@ -225,7 +210,7 @@
                                 <Button>New</Button>
                                 <Button>Del</Button>
                             </UniformGrid>
-                            <ListBox Name="MessagesList" ItemsSource="{x:Static data:TestData.Messages}">
+                            <ListBox Name="MessagesList" ItemsSource="{Binding MailMessages}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type data:MailMessage}">
                                         <TextBlock Text="{Binding Subject}" ToolTip="{Binding Body}"/>

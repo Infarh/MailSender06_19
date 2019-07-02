@@ -89,6 +89,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\ApplicationCloseCommand.cs" />
+    <Compile Include="Components\ListController.xaml.cs">
+      <DependentUpon>ListController.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValidationRules\RegExValidationRule.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -98,6 +101,10 @@
     <Compile Include="View\RecipientsInfoViewer.xaml.cs">
       <DependentUpon>RecipientsInfoViewer.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\ListController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\TabController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
