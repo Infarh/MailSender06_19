@@ -11,6 +11,14 @@ namespace MailSender.ConsoleTest
     {
         private static void Main(string[] args)
         {
+            var report = new Reporting.Report
+            {
+                Data1 = "Тестовые данные",
+                Data2 = DateTime.Now.ToString()
+            };
+
+            report.CreatePackage("TestReportFile.docx");
+
             using (var db = new Data.SongsDB())
             {
                 Console.WriteLine("Songs count - {0}", db.Songs.Count());

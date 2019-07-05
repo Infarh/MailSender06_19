@@ -5,11 +5,11 @@ namespace MailSender.ConsoleTest.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Data.SongsDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<SongsDB>
     {
         public Configuration() => AutomaticMigrationsEnabled = true;
 
-        protected override void Seed(MailSender.ConsoleTest.Data.SongsDB db)
+        protected override void Seed(SongsDB db)
         {
             if (!db.Songs.Any())
             {
