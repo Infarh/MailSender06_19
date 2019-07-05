@@ -6,9 +6,24 @@
         xmlns:local="clr-namespace:MailSender.WPFTest"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="{Binding Title}" 
         Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="52,100,0,0" VerticalAlignment="Top" Width="151" Height="46"
+                Command="{Binding ComputeSummCommand}"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="53,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                   Text="{Binding Result, TargetNullValue='[Нет данных]', FallbackValue=[fail]}" />
+        <TextBlock HorizontalAlignment="Left" Margin="208,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                   Text="{Binding ComputeProgress, StringFormat=p2}" Name="DataResult"/>
+
+        <ProgressBar HorizontalAlignment="Left" Height="22" Margin="52,168,0,0" VerticalAlignment="Top" Width="307"
+                     Value="{Binding ComputeProgress}" Maximum="1"/>
+
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="208,100,0,0" VerticalAlignment="Top" Width="151" Height="46"
+                Command="{Binding CancelSummCalculationCommand}"/>
 
     </Grid>
 </Window>
