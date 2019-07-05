@@ -89,7 +89,7 @@ namespace MailSender.lib.Tests.Service
            // Arrange
            const string str = "ASD";
            const string expected_result = "BTE";
-           const int key = 2;
+           const int key = 1;
 
            // Act
            var actual_result = StringEncryptor.Encrypt(str, key);
