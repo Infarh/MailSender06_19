@@ -11,12 +11,12 @@ namespace MailSender.lib.Services.InMemory
                 _Items.Add(new Server { Id = i, Name = $"Сервер {i}", Address = $"smtp.server{i}.com" });
         }
 
-        public override void Edit(Server item)
+        public override Server Edit(int id, Server item)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
 
-            var db_item = GetById(item.Id);
-            if (db_item is null) return;
+            var db_item = GetById(id);
+            if (db_item is null) return null;
 
             db_item.Name = item.Name;
             db_item.Address = item.Address;
@@ -24,6 +24,7 @@ namespace MailSender.lib.Services.InMemory
             db_item.UseSSL = item.UseSSL;
             db_item.UserName = item.UserName;
             db_item.Password = item.Password;
+            return db_item;
         }
     }
 }
