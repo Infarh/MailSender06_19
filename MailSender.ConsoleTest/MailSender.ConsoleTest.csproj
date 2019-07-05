@@ -53,13 +53,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Artist.cs" />
+    <Compile Include="Data\Song.cs" />
     <Compile Include="Data\SongsDB.cs" />
+    <Compile Include="Migrations\201907051822431_Initial.cs" />
+    <Compile Include="Migrations\201907051822431_Initial.Designer.cs">
+      <DependentUpon>201907051822431_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907051826241_UpdateArtist.cs" />
+    <Compile Include="Migrations\201907051826241_UpdateArtist.Designer.cs">
+      <DependentUpon>201907051826241_UpdateArtist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907051828206_UpdateArtist2.cs" />
+    <Compile Include="Migrations\201907051828206_UpdateArtist2.Designer.cs">
+      <DependentUpon>201907051828206_UpdateArtist2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201907051822431_Initial.resx">
+      <DependentUpon>201907051822431_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907051826241_UpdateArtist.resx">
+      <DependentUpon>201907051826241_UpdateArtist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907051828206_UpdateArtist2.resx">
+      <DependentUpon>201907051828206_UpdateArtist2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

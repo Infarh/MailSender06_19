@@ -1,16 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MailSender.ConsoleTest.Migrations;
 
 namespace MailSender.ConsoleTest.Data
 {
-    public class SongsDB : DbContext
+    public class SongsDB : DbContext          
     {
+        #region Установка инициализацтора БД
+
+        static SongsDB()
+        {
+            //Database.SetInitializer(new DropCreateDatabaseAlways<SongsDB>()); // Отладочный инициализатор
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SongsDB>());
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<SongsDB>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SongsDB, Configuration>());
+        }
+
+        #endregion
+
         public SongsDB() : this("Name=SongsDB") { }
 
         public SongsDB(string ConnectionString) : base(ConnectionString) // Либо имя строки подключения из app.config, либо саму строку подключения
@@ -23,30 +33,5 @@ namespace MailSender.ConsoleTest.Data
         public DbSet<Artist> Artists { get; set; }
     }
 
-    [Table("Songs")]
-    public class Song
-    {
-        public int Id { get; set; }
-
-        [Required, MaxLength(120)]
-        public string Name { get; set; }
-
-        public double Length { get; set; }
-
-        public string Description { get; set; }
-
-        public virtual Artist Artist { get; set; } //  virtual - используется не по прямому назначению!  virtual говорит EF, что свойство является "навигационным".
-    }
-
     //[Table("Artist")]
-    public class Artist
-    {
-        //[Key]
-        public int Id { get; set; }
-
-        [Required, MaxLength(120)]
-        public string Name { get; set; }
-
-        public virtual ICollection<Song> Songs { get; set; }
-    }
 }

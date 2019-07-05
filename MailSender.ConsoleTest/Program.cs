@@ -18,19 +18,7 @@ namespace MailSender.ConsoleTest
 
             using (var db = new SongsDB())
             {
-                if (!db.Songs.Any())
-                {
-                    var songs = new Song[100];
-                    for (var i = 0; i < songs.Length; i++)
-                        songs[i] = new Song
-                        {
-                            Name = $"Песня {i + 1}",
-                            Artist = new Artist { Name = $"Исполнитель {i}" }
-                        };
-                    db.Songs.AddRange(songs);
-
-                    db.SaveChanges();
-                }
+               
             }
 
             //using (var db = new Data.SongsDB())
