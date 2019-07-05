@@ -23,21 +23,23 @@ namespace MailSender.lib.Services.InMemory
 
         public async Task<T> GetByIdAsync(int id) => await Task.Run(() => GetById(id));
 
-        public void Add(T item)
+        public int Add(T item)
         {
-            if (_Items.Any(i => i.Id == item.Id)) return;
+            if(item is null) throw new ArgumentNullException(nameof(item));
+            if (_Items.Any(i => i.Id == item.Id)) return item.Id;
             item.Id = _Items.Count == 0 ? 1 : _Items.Max(i => i.Id) + 1;
             _Items.Add(item);
+            return item.Id;
         }
 
-        public async Task AddAsync(T item) => await Task.Run(() => Add(item));
+        public async Task<int> AddAsync(T item) => await Task.Run(() => Add(item));
 
-        public abstract void Edit(T item);
+        public abstract T Edit(int id, T item);
 
-        public virtual async Task EditAsync(T item) => await Task.Run(() => Edit(item));
+        public virtual async Task<T> EditAsync(int id, T item) => await Task.Run(() => Edit(id, item));
 
-        public void Delete(T item) => _Items.Remove(item);
+        public bool Delete(int id) => _Items.Remove(GetById(id));
 
-        public async Task DeleteAsync(T item) => await Task.Run(() => Delete(item));
+        public async Task<bool> DeleteAsync(int id) => await Task.Run(() => Delete(id));
     }
 }

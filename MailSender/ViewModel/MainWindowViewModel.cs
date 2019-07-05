@@ -103,7 +103,7 @@ namespace MailSender.ViewModel
 
         private void OnSaveRecipientCommandExecuted(Recipient recipient)
         {
-            _RecipientsDataService.Edit(recipient);
+            _RecipientsDataService.Edit(recipient.Id, recipient);
         }
 
         private bool CanCreateRecipientCommandExecute() => true;

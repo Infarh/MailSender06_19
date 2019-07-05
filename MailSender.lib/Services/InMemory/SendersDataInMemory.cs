@@ -15,15 +15,16 @@ namespace MailSender.lib.Services.InMemory
                 _Items.Add(new Sender { Id = i, Name = $"Отправитель {i}", Address = $"sender{i}@server.com" });
         }
 
-        public override void Edit(Sender item)
+        public override Sender Edit(int id, Sender item)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
 
-            var db_item = GetById(item.Id);
-            if (db_item is null) return;
+            var db_item = GetById(id);
+            if (db_item is null) return null;
 
             db_item.Name = item.Name;
             db_item.Address = item.Address;
+            return db_item;
         }
     }
 }
