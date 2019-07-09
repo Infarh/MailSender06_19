@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MailSender.lib.Data.BaseEntityes;
+using MailSender.lib.Service;
 
 namespace MailSender.lib.Services.InMemory
 {
@@ -34,7 +35,17 @@ namespace MailSender.lib.Services.InMemory
 
         public async Task<int> AddAsync(T item) => await Task.Run(() => Add(item));
 
-        public abstract T Edit(int id, T item);
+        public virtual T Edit(int id, T item)
+        {
+            if (item is null) throw new ArgumentNullException(nameof(item));
+
+            var db_item = GetById(id);
+            if (db_item is null) return null;
+
+            item.CopyTo(db_item);
+
+            return db_item;
+        }
 
         public virtual async Task<T> EditAsync(int id, T item) => await Task.Run(() => Edit(id, item));
 
