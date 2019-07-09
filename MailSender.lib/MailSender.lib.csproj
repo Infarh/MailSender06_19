@@ -115,6 +115,7 @@
     <Compile Include="Services\Linq2SQL\RecipientsDataServiceLinq2SQL.cs" />
     <Compile Include="Services\SmtpMailSender.cs" />
     <Compile Include="Services\SmtpMailSenderService.cs" />
+    <Compile Include="Service\ObjectCopyer.cs" />
     <Compile Include="Service\StringEncryptor.cs" />
   </ItemGroup>
   <ItemGroup>

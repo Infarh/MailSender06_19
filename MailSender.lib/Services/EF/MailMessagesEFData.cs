@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MailSender.lib.Data;
 using MailSender.lib.Data.EF;
+using MailSender.lib.Service;
 
 namespace MailSender.lib.Services.EF
 {
@@ -16,8 +17,9 @@ namespace MailSender.lib.Services.EF
             var db_item = GetById(id);
             if (db_item is null) return null;
 
-            db_item.Subject = item.Subject;
-            db_item.Body = item.Body;
+            item.CopyTo(db_item);
+            //db_item.Subject = item.Subject;
+            //db_item.Body = item.Body;
 
             Commit();
             return db_item;
